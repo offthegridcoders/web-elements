@@ -23,7 +23,8 @@
       compiledCss: 'src/css/compiled.css',
       mainCss: 'src/css/main.css',
       css: 'src/css/*.css',
-      js: 'src/js/**/*.js'
+      js: 'src/js/**/*.js',
+      html: 'src/html/**/*.html'
     }
   };
 
@@ -34,7 +35,8 @@
     dist: {
       js: './dist/js',
       assets: './dist/assets',
-      css: './dist/css/'
+      css: './dist/css/',
+      html: './dist/'
     }
   };
 
@@ -42,9 +44,11 @@
 // DEFAULT GULP TASK
 // ----------------------
 
-  gulp.task('default', ['minify-css'], function() {
+  gulp.task('default', ['minify-css', 'copy-files'], function() {
     return gulp.watch([
-        files.src.less
+        files.src.less,
+        files.src.html,
+        files.src.assets
       ], ['default']);
   });
 
@@ -89,4 +93,22 @@
           keepSpecialComments : 0
          }))
         .pipe(gulp.dest(paths.dist.css))
+    });
+
+// ----------------------
+// COPY FILES FUNCTIONS
+// ----------------------
+
+  gulp.task('copy-files', ['copy-html', 'copy-assets'],function() {});
+
+  // MOVES ALL HTML TO DIST
+    gulp.task('copy-html', function() {
+      return gulp.src(files.src.html)
+        .pipe(gulp.dest(paths.dist.html))
+    });
+
+  // MOVES ASSETS TO DIST
+    gulp.task('copy-assets', function() {
+      return gulp.src(files.src.assets)
+        .pipe(gulp.dest(paths.dist.assets))
     });

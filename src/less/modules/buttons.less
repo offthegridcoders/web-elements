@@ -1,44 +1,47 @@
-//default button color
-@btnDefaultBtnColor: transparent;
-@btnDefaultBorderColor: #000;
-@btnDefaultTextColor: #000;
 
-// GENERAL DECLARATION AND DEFAULTS
-button {
+//MIXIN TO BE USED WITH BUTTONS
+.set-solid-style (@color, @textColor) {
+  background-color: @color;
+  border: solid 1px darken(@color, 20%);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  color: @textColor;
   cursor: pointer;
-  font-family: @primary-font;
   font-size: 12px;
   font-weight: 400;
   padding: 10px 30px;
   text-transform: uppercase;
-  transition: 'background-color' .4s ease;
-}
-
-
-//MIXIN TO BE USED WITH BUTTONS
-.set-btn-style (
-    @bgcolor: @btnDefaultBtnColor,
-    @bordercolor: @btnDefaultBorderColor,
-    @textColor: @btnDefaultTextColor) {
-  background-color: @bgcolor;
-  border: solid 1px @bordercolor;
-  color: @textColor;
+  transition: background-color 0.3s ease;
 
   &:hover {
-    background: @bgcolor;
-    background-color: lighten(@bgcolor, 8%);
-    border-color: lighten(@bordercolor, 8%);
+    background-color: lighten(@color, 8%);
   }
 
   &:disabled {
-    border-color: lighten(@bordercolor, 15%);
+    background-color: lighten(@color, 8%);
+    border-color: lighten(@color, 15%);
     cursor: arrow;
+  }
+
+  &:active {
+    -webkit-box-shadow: inset 0 0 5px #000;
+    -moz-box-shadow: inset 0 0 5px #000;
+    box-shadow: inset 0 0 5px #000;
   }
 }
 
-// SPECIALTY BUTTONS
+// BUTTON CLASSES
 .btn {
-  &-default {
-    .set-btn-style(#fff, #fff, #963);
+  &-solid {
+    &-green {
+      .set-solid-style(#aef292, #fff);
+    }
+    &-red {
+      .set-solid-style(#ed564f, #fff);
+    }
+    &-blue {
+      .set-solid-style(#4f9ded, #fff);
+    }
   }
 }

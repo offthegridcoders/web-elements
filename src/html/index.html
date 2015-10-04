@@ -12,6 +12,85 @@
   </head>
   <body>
     <section>
+      <h2>Buttons</h2>
+      <h3>Solid Button Style (btn-solid)</h3>
+      <button class="btn-solid-green">test</button>
+      <button class="btn-solid-green" disabled>test</button>
+      <button class="btn-solid-red">test</button>
+      <button class="btn-solid-red" disabled>test</button>
+      <button class="btn-solid-blue">test</button>
+      <button class="btn-solid-blue" disabled>test</button>
+      <h4>LESS</h4>
+      <h5>Snippet</h5>
+      <textarea class="large-height">
+        //MIXIN TO BE USED WITH BUTTONS
+          .set-solid-style (@color, @textColor) {
+            background-color: @color;
+            border: solid 1px darken(@color, 20%);
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            color: @textColor;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 400;
+            padding: 10px 30px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: lighten(@color, 8%);
+            }
+
+            &:disabled {
+              background-color: lighten(@color, 8%);
+              border-color: lighten(@color, 15%);
+              cursor: arrow;
+            }
+
+            &:active {
+              -webkit-box-shadow: inset 0 0 5px #000;
+              -moz-box-shadow: inset 0 0 5px #000;
+              box-shadow: inset 0 0 5px #000;
+            }
+          }
+      </textarea>
+      <h5>Useage</h5>
+      <textarea class="small-height">.btn-class {.set-solid-style(#aef292, #fff);}</textarea>
+      <h4>CSS</h4>
+      <h5>Snippet</h5>
+      <textarea class="large-height">
+        .btn-solid-red {
+          background-color: #ed564f;
+          border: solid 1px #c21c14;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+          color: #fff;
+          cursor: pointer;
+          font-size: 12px;
+          font-weight: 400;
+          padding: 10px 30px;
+          text-transform: uppercase;
+          transition: background-color 0.3s ease;
+        }
+
+        .btn-solid-red:hover {
+          background-color: #f17a74;
+        }
+
+        .btn-solid-red:disabled {
+          background-color: #f17a74;
+          border-color: #f49994;
+          cursor: arrow;
+        }
+
+        .btn-solid-red:active {
+          -webkit-box-shadow: inset 0 0 5px #000;
+          -moz-box-shadow: inset 0 0 5px #000;
+          box-shadow: inset 0 0 5px #000;
+        }
+      </textarea>
     </section>
   </body>
 </html>

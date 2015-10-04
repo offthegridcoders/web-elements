@@ -1,0 +1,44 @@
+//default button color
+@btnDefaultBtnColor: transparent;
+@btnDefaultBorderColor: #000;
+@btnDefaultTextColor: #000;
+
+// GENERAL DECLARATION AND DEFAULTS
+button {
+  cursor: pointer;
+  font-family: @primary-font;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  transition: 'background-color' .4s ease;
+}
+
+
+//MIXIN TO BE USED WITH BUTTONS
+.set-btn-style (
+    @bgcolor: @btnDefaultBtnColor,
+    @bordercolor: @btnDefaultBorderColor,
+    @textColor: @btnDefaultTextColor) {
+  background-color: @bgcolor;
+  border: solid 1px @bordercolor;
+  color: @textColor;
+
+  &:hover {
+    background: @bgcolor;
+    background-color: lighten(@bgcolor, 8%);
+    border-color: lighten(@bordercolor, 8%);
+  }
+
+  &:disabled {
+    border-color: lighten(@bordercolor, 15%);
+    cursor: arrow;
+  }
+}
+
+// SPECIALTY BUTTONS
+.btn {
+  &-default {
+    .set-btn-style(#fff, #fff, #963);
+  }
+}
